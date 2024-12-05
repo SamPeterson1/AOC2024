@@ -7,7 +7,7 @@ struct Input {
 
 impl Input {
     fn iter(&self) -> impl Iterator<Item=(usize, usize)> {
-        (0..self.word_search.len()).cartesian_product((0..self.word_search[0].len()))
+        (0..self.word_search.len()).cartesian_product(0..self.word_search[0].len())
     }
 
     fn get_max_i(&self) -> usize {
@@ -86,8 +86,6 @@ fn find_x_mas_directional(input: &Input, i: i32, j: i32, sign: i32) -> bool {
 }
 
 fn find_x_mas(input: &Input, i: usize, j: usize) -> bool {
-    let mut is_x_mas = true;
-
     let i = i as i32;
     let j = j as i32;
 

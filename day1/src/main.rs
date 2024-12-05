@@ -3,7 +3,6 @@ use std::collections::HashMap;
 use std::vec::IntoIter;
 use tuple_conv::RepeatedTuple;
 use itertools::Itertools;
-use itertools::Zip;
 use itertools::multizip;
 
 fn main() {
@@ -34,7 +33,7 @@ fn part1() {
 }
 
 fn part2() {
-    let (mut left, mut right): (Vec<i32>, Vec<i32>) = fs::read_to_string("input.txt").unwrap()
+    let (left, right): (Vec<i32>, Vec<i32>) = fs::read_to_string("input.txt").unwrap()
         .split("\n")
         .map(|line| line.split("   ")
         .map(|num| 

@@ -1,5 +1,4 @@
 use std::fs;
-use std::iter;
 
 #[derive(Debug)]
 enum ParserState {
@@ -37,24 +36,12 @@ impl Parser {
     fn has_next(&self) -> bool {
         self.index < self.input.len()
     }
-    
-    fn has_peek(&self) -> bool {
-        (self.index + 1) < self.input.len()
-    }
 
     fn next(&mut self) -> Option<char> {
         let cur = self.cur();
         self.index += 1;
 
         cur
-    }
-
-    fn peek(&mut self) -> Option<char> {
-        if !self.has_peek() {
-            return None;
-        }
-
-        Some(self.input[self.index + 1])
     }
 
     fn cur(&self) -> Option<char> {
@@ -119,8 +106,6 @@ fn update_enabled(parser: &mut Parser) -> Option<()> {
         }
     }
 
-    println!("{:?}, {:?}", do_command, dont_command);
-
     if dont_command {
         parser.enabled = false;
     } else if do_command {
@@ -163,7 +148,7 @@ fn read_int(parser: &mut Parser) -> Option<i32> {
         return None;
     }
 
-    while (c.is_ascii_digit() && n_digits < 3) {
+    while c.is_ascii_digit() && n_digits < 3 {
         parser.next();
         n_digits += 1;
         value = 10 * value + c.to_digit(10).unwrap();
@@ -234,8 +219,6 @@ fn next_result(parser: &mut Parser, use_enabled: bool) -> Option<i32> {
         } else {
             parser.next();
         }
-
-        println!("State: {:?}, Index: {:?}, Character: {:?}, Enabled: {:?}", parser.state, parser.index, parser.cur(), parser.enabled);
     }
 
     None

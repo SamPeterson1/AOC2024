@@ -42,23 +42,23 @@ fn is_safe(report: &Vec<i32>, ignore_index: usize) -> bool {
 
         let dist = (e - prev_val).abs();
 
-        safe &= (dist >= 1 && dist <= 3);
+        safe &= dist >= 1 && dist <= 3;
 
-        if (trend == 0) {
-            if (e > prev_val) {
+        if trend == 0 {
+            if e > prev_val {
                 trend = 1;
             }
 
-            if (e < prev_val) {
+            if e < prev_val {
                 trend = -1;
             }
         } else {
-            if (e > prev_val) {
-                safe &= (trend == 1);
+            if e > prev_val {
+                safe &= trend == 1;
             }
 
-            if (e < prev_val) {
-                safe &= (trend == -1);
+            if e < prev_val {
+                safe &= trend == -1;
             }
         }
 
