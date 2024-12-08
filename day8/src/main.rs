@@ -88,7 +88,7 @@ fn compute_antinodes_2(antenna_1: (i32, i32), antenna_2: (i32, i32), antinodes: 
 }
 
 fn part1(input: &mut Input) {
-    input.frequencies.iter().for_each(|(freq, antennas)| {
+    input.frequencies.iter().for_each(|(_, antennas)| {
         (0..(antennas.len() - 1)).for_each(|i| {
             ((i + 1)..antennas.len()).for_each(|j| {
                 compute_antinodes_1(antennas[i], antennas[j], &mut input.antinodes);
@@ -104,7 +104,7 @@ fn part1(input: &mut Input) {
 }
 
 fn part2(input: &mut Input) {
-    input.frequencies.iter().for_each(|(freq, antennas)| {
+    input.frequencies.iter().for_each(|(_, antennas)| {
         (0..(antennas.len() - 1)).for_each(|i| {
             ((i + 1)..antennas.len()).for_each(|j| {
                 compute_antinodes_2(antennas[i], antennas[j], &mut input.antinodes);
